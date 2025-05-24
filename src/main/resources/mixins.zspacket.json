@@ -1,0 +1,14 @@
+{
+	"package": "io.wdsj.zspacket.mixin",
+	"required": true,
+	"refmap": "mixins.zspacket.refmap.json",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"network.NettyCompressionDecoderMixin",
+		"network.NettyCompressionEncoderMixin"
+	],
+	"server": [],
+	"client": []
+}
