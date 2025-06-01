@@ -7,8 +7,14 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"network.NettyCompressionDecoderMixin",
-		"network.NettyCompressionEncoderMixin"
+		"network.NettyCompressionEncoderMixin",
+		"network.NetHandlerLoginServerMixin",
+		"network.SPacketEnableCompressionMixin"
 	],
-	"server": [],
-	"client": []
+	"server": [
+		"network.server.DedicatedServerMixin"
+	],
+	"client": [
+		"network.client.NetHandlerLoginClientMixin"
+	]
 }

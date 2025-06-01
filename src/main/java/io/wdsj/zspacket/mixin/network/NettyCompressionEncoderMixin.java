@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(value = NettyCompressionEncoder.class, priority = 999)
 public abstract class NettyCompressionEncoderMixin {
-    @Shadow
-    private int threshold;
+
+    @Shadow private int threshold;
 
     /**
      * @author Creeam
@@ -24,7 +24,7 @@ public abstract class NettyCompressionEncoderMixin {
         int inputSize = p_encode_2_.readableBytes();
         PacketBuffer packetBuffer = new PacketBuffer(p_encode_3_);
 
-        if (inputSize < this.threshold) {
+        if (inputSize < threshold) {
             packetBuffer.writeVarInt(0);
             packetBuffer.writeBytes(p_encode_2_);
         } else {

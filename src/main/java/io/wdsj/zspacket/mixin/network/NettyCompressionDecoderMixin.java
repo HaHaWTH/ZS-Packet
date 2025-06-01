@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.DecoderException;
+import io.wdsj.zspacket.config.Settings;
 import net.minecraft.network.NettyCompressionDecoder;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,8 +32,8 @@ public abstract class NettyCompressionDecoderMixin {
             if (compressedSize == 0) {
                 p_decode_3_.add(packetBuffer.readBytes(packetBuffer.readableBytes()));
             } else {
-                if (compressedSize < this.threshold) {
-                    throw new DecoderException("Badly compressed packet - size of " + compressedSize + " is below server threshold of " + this.threshold);
+                if (compressedSize < threshold) {
+                    throw new DecoderException("Badly compressed packet - size of " + compressedSize + " is below server threshold of " + Settings.threshold);
                 }
 
                 if (compressedSize > 2097152) {
