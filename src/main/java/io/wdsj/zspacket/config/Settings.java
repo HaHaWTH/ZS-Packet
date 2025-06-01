@@ -11,6 +11,10 @@ public class Settings {
     @Config.RequiresMcRestart
     public static int compressionLevel = 6;
 
+    @Config.Comment("ZStandard compression threshold")
+    @Config.RequiresMcRestart
+    public static int threshold = 256;
+
     static {
         ConfigAnytime.register(Settings.class);
     }

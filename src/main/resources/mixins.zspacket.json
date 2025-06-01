@@ -7,8 +7,14 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"network.NettyCompressionDecoderMixin",
-		"network.NettyCompressionEncoderMixin"
+		"network.NettyCompressionEncoderMixin",
+		"network.NetworkManagerMixin",
+		"network.NetHandlerLoginServerMixin",
+		"network.MinecraftServerMixin"
 	],
-	"server": [],
-	"client": []
+	"server": [
+		"network.server.DedicatedServerMixin"
+	],
+	"client": [
+	]
 }
