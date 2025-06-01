@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
-
     @Inject(
             method = "getNetworkCompressionThreshold",
             at = @At("HEAD"),

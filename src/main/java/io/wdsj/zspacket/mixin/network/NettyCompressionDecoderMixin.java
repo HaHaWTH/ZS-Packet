@@ -32,10 +32,8 @@ public abstract class NettyCompressionDecoderMixin {
     )
     protected void decode(ChannelHandlerContext p_decode_1_, ByteBuf p_decode_2_, List<Object> p_decode_3_, CallbackInfo ci) throws Exception {
         if (threshold == ZSPacket.IDENTIFIER) {
-            ZSPacket.LOGGER.info("ZStandard compression enabled");
             ci.cancel();
         } else {
-            ZSPacket.LOGGER.info("ZStandard compression disabled");
             return;
         }
         if (p_decode_2_.readableBytes() != 0) {

@@ -8,5 +8,5 @@ import org.apache.logging.log4j.Logger;
 public class ZSPacket {
     public static final String DEPENDENCY = "required-after:mixinbooter@[10.1,);required-after:configanytime;";
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_ID);
-    public static final int IDENTIFIER = -1;
+    public static final int IDENTIFIER = -214748999;
 }
