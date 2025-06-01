@@ -1,33 +1,18 @@
 package io.wdsj.zspacket.mixin.network;
 
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
-import io.wdsj.zspacket.duck.PacketCompressionAccessor;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.server.network.NetHandlerLoginServer;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(value = NetHandlerLoginServer.class, priority = 999)
 public abstract class NetHandlerLoginServerMixin {
-    @Redirect(
+    @ModifyConstant(
             method = "tryAcceptPlayer",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/network/NetworkManager;sendPacket(Lnet/minecraft/network/Packet;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V"
-            ),
-            allow = 1
+            constant = @Constant(expandZeroConditions = Constant.Condition.GREATER_THAN_OR_EQUAL_TO_ZERO),
+            require = 1
     )
-    public void tryAcceptPlayer(NetworkManager instance, Packet<?> packetIn, GenericFutureListener<? extends Future<? super Void>> listener, GenericFutureListener<? extends Future<? super Void>>[] listeners) {
-        instance.sendPacket(packetIn, new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) throws Exception {
-                instance.setCompressionThreshold(((PacketCompressionAccessor)  packetIn).getZSCompressionThreshold());
-            }
-        });
+    public int tryAcceptPlayer(int original) {
+        return Integer.MIN_VALUE;
     }
 }

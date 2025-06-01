@@ -8,13 +8,13 @@
 	"mixins": [
 		"network.NettyCompressionDecoderMixin",
 		"network.NettyCompressionEncoderMixin",
+		"network.NetworkManagerMixin",
 		"network.NetHandlerLoginServerMixin",
-		"network.SPacketEnableCompressionMixin"
+		"network.MinecraftServerMixin"
 	],
 	"server": [
 		"network.server.DedicatedServerMixin"
 	],
 	"client": [
-		"network.client.NetHandlerLoginClientMixin"
 	]
 }
