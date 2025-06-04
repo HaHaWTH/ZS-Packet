@@ -111,6 +111,7 @@ repositories {
 
 dependencies {
     embed 'com.github.luben:zstd-jni:1.5.7-3'
+    compileOnly rfg.deobf("curse.maven:packet-fixer-689467:6580597")
     implementation 'com.cleanroommc:configanytime:3.0'
     if (propertyBool('use_modern_java_syntax')) {
         annotationProcessor 'com.github.bsideup.jabel:jabel-javac-plugin:1.0.0'
