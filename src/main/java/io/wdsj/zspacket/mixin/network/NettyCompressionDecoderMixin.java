@@ -6,6 +6,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.DecoderException;
 import io.wdsj.zspacket.ZSPacket;
+import io.wdsj.zspacket.util.ModCompatUtils;
 import net.minecraft.network.NettyCompressionDecoder;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(value = NettyCompressionDecoder.class, priority = 999)
+@Mixin(value = NettyCompressionDecoder.class, priority = 500)
 public abstract class NettyCompressionDecoderMixin {
     @Shadow
     private int threshold;
@@ -43,9 +44,8 @@ public abstract class NettyCompressionDecoderMixin {
             if (compressedSize == 0) {
                 p_decode_3_.add(packetBuffer.readBytes(packetBuffer.readableBytes()));
             } else {
-
-                if (compressedSize > 2097152) {
-                    throw new DecoderException("Badly compressed packet - size of " + compressedSize + " is larger than protocol maximum of " + 2097152);
+                if (compressedSize > ModCompatUtils.getDecoderMaxSize()) {
+                    throw new DecoderException("Badly compressed packet - size of " + compressedSize + " is larger than protocol maximum of " + ModCompatUtils.getDecoderMaxSize());
                 }
 
                 byte[] compressedData = new byte[packetBuffer.readableBytes()];

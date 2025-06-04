@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = NettyCompressionEncoder.class, priority = 999)
+@Mixin(value = NettyCompressionEncoder.class, priority = 500)
 public abstract class NettyCompressionEncoderMixin {
     @Shadow private int threshold;
 
